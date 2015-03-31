@@ -18,9 +18,13 @@ BraintreeHelper.prototype.getGateway = function() {
   return this.gateway;
 }
 
-BraintreeHelper.prototype.clientTokenGenerate = function(options) {
+BraintreeHelper.prototype.clientTokenGenerate = function(options, clientId) {
   var wrappedCall = Meteor.wrapAsync(this.gateway.clientToken.generate, this.gateway.clientToken);
-  return wrappedCall(options);
+  if (clientId) {
+    options.clientId = clientId;
+  }
+  var response = wrappedCall(options);
+  return response.clientToken
 }
 
 BraintreeHelper.prototype.createSale = function(options) {
