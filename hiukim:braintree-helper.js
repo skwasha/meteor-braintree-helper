@@ -23,9 +23,36 @@ BraintreeHelper.prototype.clientTokenGenerate = function(options) {
   return wrappedCall(options);
 }
 
-BraintreeHelper.prototype.transactionSale = function(options) {
+BraintreeHelper.prototype.createSale = function(options) {
   var wrappedCall = Meteor.wrapAsync(this.gateway.transaction.sale, this.gateway.transaction);
   return wrappedCall(options);
 }
+
+BraintreeHelper.prototype.createCustomer = function(options) {
+  var wrappedCall = Meteor.wrapAsync(this.gateway.customer.create, this.gateway.customer);
+  return wrappedCall(options);
+}
+
+BraintreeHelper.prototype.createCreditCard = function(options) {
+  var wrappedCall = Meteor.wrapAsync(this.gateway.creditCard.create, this.gateway.creditCard);
+  return wrappedCall(options);
+}
+
+BraintreeHelper.prototype.createSubscription = function(options) {
+  var wrappedCall = Meteor.wrapAsync(this.gateway.subscription.create, this.gateway.subscription);
+  return wrappedCall(options);
+}
+
+BraintreeHelper.prototype.cancelSubscription = function(options) {
+  var wrappedCall = Meteor.wrapAsync(this.gateway.subscription.cancel, this.gateway.subscription);
+  return wrappedCall(options);
+}
+
+BraintreeHelper.prototype.getCustomer = function(id) {
+  var wrappedCall = Meteor.wrapAsync(this.gateway.customer.find, this.gateway.customer);
+  return wrappedCall(id);
+}
+
+
 
 //TODO: wrap up all the API calls
