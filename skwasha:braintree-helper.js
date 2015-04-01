@@ -34,7 +34,8 @@ BraintreeHelper.prototype.createSale = function(options) {
 
 BraintreeHelper.prototype.createCustomer = function(options) {
   var wrappedCall = Meteor.wrapAsync(this.gateway.customer.create, this.gateway.customer);
-  return wrappedCall(options);
+  var response = wrappedCall(options);
+  return response
 }
 
 BraintreeHelper.prototype.createCreditCard = function(options) {
